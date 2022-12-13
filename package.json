@@ -1,44 +1,43 @@
 {
-  "name": "remix-expo",
-  "version": "1.0.0",
-  "description": "Remix and Expo Integration",
-  "author": "Ty Rauber <tyrauber@mac.com>",
-  "license": "MIT",
-  "main": "./apps/remix/server/index.js",
+  "name": "template",
+  "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/tyrauber/remix-expo#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tyrauber/remix-expo.git"
-  },
-  "bugs": {
-    "url": "https://github.com/tyrauber/remix-expo"
-  },
-  "packageManager": "yarn@1.22.17",
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "apps/*"
-    ]
-  },
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --no-cache --parallel --continue",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "clean": "yarn clean:turbo && yarn clean:watchman",
-    "clean:turbo": "yarn turbo run clean && rm -rf node_modules  && rm -rf apps/*/ios && rm -rf apps/*/android",
-    "clean:watchman": "watchman watch-del-all && yarn cache clean",
-    "remix": "pnpm --filter \"@remix-expo/remix\"",
-    "expo": "pnpm --filter \"@remix-expo/expo\"",
-    "start": "pnpm --filter \"@remix-expo/remix\" run start",
-    "image:build": "docker build -t remix-expo .",
-    "image:run": "docker run -p8080:8080 remix-expo",
-    "deploy": "fly deploy"
+    "build": "next build",
+    "dev": "next dev",
+    "postinstall": "prisma generate",
+    "lint": "next lint",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@next-auth/prisma-adapter": "^1.0.5",
+    "@prisma/client": "^4.5.0",
+    "@tanstack/react-query": "^4.16.0",
+    "@trpc/client": "^10.0.0",
+    "@trpc/next": "^10.0.0",
+    "@trpc/react-query": "^10.0.0",
+    "@trpc/server": "^10.0.0",
+    "next": "13.0.2",
+    "next-auth": "^4.18.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "superjson": "1.9.1",
+    "zod": "^3.18.0"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.26.0",
+    "eslint-config-next": "13.0.2",
+    "postcss": "^8.4.14",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "prisma": "^4.5.0",
+    "tailwindcss": "^3.2.0",
+    "typescript": "^4.8.4"
   }
 }
